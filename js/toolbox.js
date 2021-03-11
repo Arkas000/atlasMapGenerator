@@ -50,8 +50,8 @@ class Area {
                 rects.push({
                     x: this.x + j*(this.width/this.cols),
                     y: this.y + i*(this.height/this.rows),
-                    w: this.x + j*(this.width/this.cols+1),
-                    h: this.y + i*(this.height/this.rows+1)
+                    width: this.x + j*(this.width/this.cols+1),
+                    height: this.y + i*(this.height/this.rows+1)
                 });
             }
         }

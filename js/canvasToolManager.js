@@ -1,11 +1,24 @@
 function draw(evt) {
-    console.log(mouseCanvasPos);
-
     if(mouseCanvasDown) {
         if(mouseCanvasDown.area) {
-            console.log(mouseCanvasDown)
-            mouseCanvasDown.area.x = mouseCanvasDown.areaCoords.x + (mouseCanvasPos.x - mouseCanvasDown.mouseCanvasPos.x);
-            mouseCanvasDown.area.y = mouseCanvasDown.areaCoords.y + (mouseCanvasPos.y - mouseCanvasDown.mouseCanvasPos.y);
+            switch(mouseCanvasDown.currentAction) {
+                case Actions.DRAG:
+                    mouseCanvasDown.area.x = mouseCanvasDown.areaCoords.x + (mouseCanvasPos.x - mouseCanvasDown.mouseCanvasPos.x);
+                    mouseCanvasDown.area.y = mouseCanvasDown.areaCoords.y + (mouseCanvasPos.y - mouseCanvasDown.mouseCanvasPos.y);
+                    break;
+                case Actions.RESIZE_WH:
+                    mouseCanvasDown.area.width = mouseCanvasDown.areaCoords.width + (mouseCanvasPos.x - mouseCanvasDown.mouseCanvasPos.x);
+                    mouseCanvasDown.area.height = mouseCanvasDown.areaCoords.height + (mouseCanvasPos.y - mouseCanvasDown.mouseCanvasPos.y);
+                    break;
+                case Actions.RESIZE_W:
+                    mouseCanvasDown.area.width = mouseCanvasDown.areaCoords.width + (mouseCanvasPos.x - mouseCanvasDown.mouseCanvasPos.x);
+                    break;
+                case Actions.RESIZE_H:
+                    mouseCanvasDown.area.height = mouseCanvasDown.areaCoords.height + (mouseCanvasPos.y - mouseCanvasDown.mouseCanvasPos.y);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -16,6 +29,13 @@ function draw(evt) {
     if(imageLoaded) {
         ctx.drawImage(texture, 0, 0, texture.width, texture.height,
             0, 0, canvas.width, canvas.height); // destination rectangle
+    }
+
+    // draw over area
+    if(mouseAreaOver) {
+        ctx.globalAlpha = 0.2;
+        ctx.fillRect(mouseAreaOver.x,mouseAreaOver.y,mouseAreaOver.width,mouseAreaOver.height);
+        ctx.globalAlpha = 1.0;
     }
 
     // draw grid areas

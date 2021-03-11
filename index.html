@@ -12,7 +12,14 @@
     <script src="js/main.js"></script>
 </head>
 <body>
-    <div class="sections">
+    <div id='drop-area'>
+        <div class="content">
+            <img src="img/octicons-arrow-down.svg" alt="">
+            <h1 style="color:#888888">Drop texture here</h1>
+        </div>
+    </div>
+
+    <div id='sections' class="hidden">
         <div id="tool-box">
             <button onClick="generateGrid()">Grid</button>
             <div id="gridList"></div>

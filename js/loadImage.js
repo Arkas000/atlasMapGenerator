@@ -37,5 +37,7 @@ function setFiles(files){
     function onImageLoaded() {
         canvas.height = canvas.width * (texture.height / texture.width);
         imageLoaded = true;
+        document.getElementById('drop-area').classList.add('hidden');
+        document.getElementById('sections').classList.remove('hidden');
     }
 }
