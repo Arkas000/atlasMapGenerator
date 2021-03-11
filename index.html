@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas Generator</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/toolbox.js"></script>
+    <script src="js/loadImage.js"></script>
+    <script src="js/canvasToolManager.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="sections">
+        <div id="tool-box">
+            <button onClick="generateGrid()">Grid</button>
+            <div id="gridList"></div>
+        </div>
+        <canvas id='image-area' width="1024px" height="768px"></canvas>
+    </div>
+
+    <div id="gridElementTemplate">
+        <div class="action-block">
+            <span>Grid </span><span class="idx">#</span>
+            <button>X</button>
+        </div>
+        <div class="action-block">
+            <span>rows:</span>
+            <span class="rows">#</span>
+            <button>+</button>
+            <button>-</button>
+        </div>
+
+        <div class="action-block">
+            <span>cols:</span>
+            <span class="cols">#</span>
+            <button>+</button>
+            <button>-</button>
+        </div>
+    </div>
+</body>
+</html>
+

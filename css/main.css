@@ -1,0 +1,21 @@
+.sections {
+    display: inline-block;
+}
+
+.sections > div {
+    float:left;
+}
+
+#tool-box {
+    width: 150px;
+}
+
+#gridElementTemplate {
+    //display: none;
+}
+
+.action-block > span {
+    width: 40px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
