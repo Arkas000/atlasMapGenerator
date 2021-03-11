@@ -4,6 +4,7 @@ let texture;
 let imageLoaded = false;
 
 let mouseCanvasPos = {x: 0, y: 0};
+let mouseCanvasDown = null;
 
 window.onload = function() {
     window.addEventListener('dragenter', onDragEnter, false);
@@ -18,31 +19,21 @@ window.onload = function() {
         mouseCanvasPos = getMousePos(canvas, evt);
     }, false);
 
+    canvas.addEventListener('mousedown', function(evt) {
+        mouseCanvasDown = {mouseCanvasPos, area: getFirstInsideArea()};
+        if(mouseCanvasDown.area)
+            mouseCanvasDown.areaCoords = {x: mouseCanvasDown.area.x, y: mouseCanvasDown.area.y, w: mouseCanvasDown.area.width, h: mouseCanvasDown.area.height};
+    }, false);
+
+    canvas.addEventListener('mouseup', function(evt) {
+        mouseCanvasDown = null;
+    }, false);
+
     window.requestAnimationFrame(draw);
 };
 
 function generateGrid() {
     Area.addGridElement();
-}
-
-function draw(evt) {
-    console.log(mouseCanvasPos);
-
-    // clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // draw texture
-    if(imageLoaded) {
-        ctx.drawImage(texture, 0, 0, texture.width, texture.height,
-            0, 0, canvas.width, canvas.height); // destination rectangle
-    }
-
-    // draw grid areas
-    Area.areas.forEach(area => {
-        area.drawGrid(ctx);
-    })
-
-    window.requestAnimationFrame(draw);
 }
 
 function getMousePos(canvas, evt) {
