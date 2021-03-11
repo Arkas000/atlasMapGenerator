@@ -35,7 +35,7 @@ class Area {
 
     static addArea(rows = 1, cols = 1) {
         const area = new Area(rows, cols);
-        Area.areas.push(new Area(rows, cols));
+        Area.areas.push(area);
         return area;
     }
 
