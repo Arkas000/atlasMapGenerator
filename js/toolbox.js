@@ -17,6 +17,22 @@ class Area {
         this.cols = cols;
     }
 
+    addCol() {
+        this.cols++;
+    }
+
+    remCol() {
+        this.cols = this.cols > 1 ? this.cols-1 : 1;
+    }
+
+    addRow() {
+        this.rows++;
+    }
+
+    remRow() {
+        this.rows = this.rows > 1 ? this.rows-1 : 1;
+    }
+
     static addArea(rows = 1, cols = 1) {
         const area = new Area(rows, cols);
         Area.areas.push(new Area(rows, cols));
@@ -61,9 +77,28 @@ class Area {
         const cln = gridElTemplate.cloneNode(true);
         cln.id = null;
 
-        let gridElement = document.createElement('div');
-        gridElement.innerHTML = 'ciao';
-        gridElement.className = 'grid-element';
+        cln.getElementsByClassName("cols")[0].innerText = area.cols;
+        cln.getElementsByClassName("rows")[0].innerText = area.rows;
+
+        cln.getElementsByClassName("col-add")[0].onclick = () => {
+            area.addCol();
+            cln.getElementsByClassName("cols")[0].innerText = area.cols;
+        };
+
+        cln.getElementsByClassName("col-rem")[0].onclick = () => {
+            area.remCol();
+            cln.getElementsByClassName("cols")[0].innerText = area.cols;
+        };
+
+        cln.getElementsByClassName("row-add")[0].onclick = () => {
+            area.addRow();
+            cln.getElementsByClassName("rows")[0].innerText = area.rows;
+        };
+
+        cln.getElementsByClassName("row-rem")[0].onclick = () => {
+            area.remRow();
+            cln.getElementsByClassName("rows")[0].innerText = area.rows;
+        };
 
         // The variable iDiv is still good... Just append to it.
         const gridList = document.getElementById('gridList');
