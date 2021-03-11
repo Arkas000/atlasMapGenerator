@@ -47,7 +47,12 @@ class Area {
         const rects = [];
         for(let i = 1; i <= this.rows; i++) {
             for(let j = 1; j <= this.cols; j++) {
-                rects.push({x: this.x + j*(this.width/this.cols), y: this.y + i*(this.height/this.rows), w: this.x + j*(this.width/this.cols+1), h: this.y + i*(this.height/this.rows+1)});
+                rects.push({
+                    x: this.x + j*(this.width/this.cols),
+                    y: this.y + i*(this.height/this.rows),
+                    w: this.x + j*(this.width/this.cols+1),
+                    h: this.y + i*(this.height/this.rows+1)
+                });
             }
         }
         return rects;
@@ -100,7 +105,6 @@ class Area {
             cln.getElementsByClassName("rows")[0].innerText = area.rows;
         };
 
-        // The variable iDiv is still good... Just append to it.
         const gridList = document.getElementById('gridList');
         gridList.appendChild(cln);
     }
